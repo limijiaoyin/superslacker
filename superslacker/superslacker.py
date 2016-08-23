@@ -43,6 +43,7 @@ superslacker.py --token="your-slack-api-token" --channel="#notifications"
 """
 import os
 import sys
+import json
 import copy
 
 from supervisor import childutils
@@ -120,7 +121,7 @@ class SuperSlacker(ProcessStateMonitor):
     def get_process_state_change_msg(self, headers, payload):
         pheaders, pdata = childutils.eventdata(payload + '\n')
         txt = ("[{0}] Process {groupname}:{processname} "
-               "failed to start too many times".format(self.hostname, **pheaders))
+               "{2}".format(self.hostname, **pheaders, json.dumps(payload)))
         return txt
 
     def send_batch_notification(self):
