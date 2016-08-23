@@ -138,7 +138,7 @@ class SuperSlacker(ProcessStateMonitor):
         }
 
     def send_message(self, message):
-        slack = Slacker(message['token'])
+        slack = Slacker(message['token'], timeout=60)
         for msg in message['messages']:
             for i in range(3):
                 try:
