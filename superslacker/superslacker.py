@@ -120,8 +120,8 @@ class SuperSlacker(ProcessStateMonitor):
 
     def get_process_state_change_msg(self, headers, payload):
         pheaders, pdata = childutils.eventdata(payload + '\n')
-        txt = ("[{0}] Process {groupname}:{processname} "
-               "{1}".format(self.hostname, json.dumps(pdata), **pheaders))
+        txt = ("[{0}] Process {groupname}:{processname} event: {eventname} "
+               "payload: {1}".format(self.hostname, json.dumps(payload), **pheaders))
         return txt
 
     def send_batch_notification(self):
