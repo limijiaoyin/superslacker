@@ -107,6 +107,7 @@ class SuperSlacker(ProcessStateMonitor):
             sys.stderr.write('Must run as a supervisor event listener\n')
             sys.exit(1)
 
+        options.eventname = 'TICK_5'
         events = options.events.split(',')
         cls.process_state_events = events
         return cls(**options.__dict__)
