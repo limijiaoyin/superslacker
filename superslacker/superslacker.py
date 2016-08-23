@@ -140,7 +140,15 @@ class SuperSlacker(ProcessStateMonitor):
     def send_message(self, message):
         slack = Slacker(message['token'])
         for msg in message['messages']:
-            slack.chat.post_message(message['channel'], msg)
+            for i in range(3):
+                try:
+                    slack.chat.post_message(message['channel'], msg)
+                    break
+                except Exception as e:
+                    if i != 2:
+                        pass
+                    else:
+                        raise e
 
 
 def main():
