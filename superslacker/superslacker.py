@@ -67,6 +67,8 @@ class SuperSlacker(ProcessStateMonitor):
 
         parser.add_option("-n", "--hostname", dest="hostname", default="",
                           help="System Hostname")
+        parser.add_option("-e", "--events", dest="events", default="",
+                          help="Supervisor Events")
         return parser
 
     @classmethod
@@ -103,6 +105,8 @@ class SuperSlacker(ProcessStateMonitor):
             sys.stderr.write('Must run as a supervisor event listener\n')
             sys.exit(1)
 
+        events = options.get('events').split(',')
+        cls.process_state_events = events
         return cls(**options.__dict__)
 
     def __init__(self, **kwargs):
