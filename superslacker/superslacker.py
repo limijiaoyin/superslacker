@@ -67,6 +67,7 @@ class SuperSlacker(ProcessStateMonitor):
 
         parser.add_option("-n", "--hostname", dest="hostname", default="",
                           help="System Hostname")
+        
         parser.add_option("-e", "--events", dest="events", default="",
                           help="Supervisor Events")
         return parser
